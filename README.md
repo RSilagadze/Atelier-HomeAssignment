@@ -27,17 +27,9 @@ Ajouter les fonctionnalités supplémentaires que tu souhaites
 
 
 <h2 data-v-0ead0262="">Tâches réalisées :</h2>
-* Tâche 1
-  - /players
-* Tâche 2
-  - /players/{id}
-* Tâche 3
-  - /statistics
-  
-<h2 data-v-0ead0262="">Tests :</h2>
-* Executer depuis la racine du répo (là où se trouve le fichier <b>compose.yaml</b>):
-- docker compose up
-- docker run
+<p>Executer depuis la racine du répo (là où se trouve le fichier <b>compose.yaml</b>): </p>
+<p>docker compose up </p>
+<p>docker run </p>
 
 # Get all players
 curl -X GET http://localhost:8080/players/ -H "Accept: application/json"
