@@ -23,3 +23,38 @@ Ajouter les fonctionnalités supplémentaires que tu souhaites
 
 <h2 data-v-0ead0262="">Les tâches à réaliser :</h2>
 <div class="tasks" data-v-0ead0262=""><div class="card card-task" data-v-6c12f4e6="" data-v-0ead0262=""><input type="checkbox" class="option-input" data-v-6c12f4e6=""><div class="title" data-v-6c12f4e6="">Tâche n°1</div><p class="text-tasks" data-v-0ead0262=""> Crée un endpoint qui retourne les joueurs. La liste doit être triée du meilleur au moins bon. </p><!----></div><div class="card card-task" data-v-6c12f4e6="" data-v-0ead0262=""><input type="checkbox" class="option-input" data-v-6c12f4e6=""><div class="title" data-v-6c12f4e6="">Tâche n°2</div><p class="text-tasks" data-v-0ead0262=""> Créer un endpoint qui permet de retourner les informations d’un joueur grâce à son ID. </p><!----></div><div class="card card-task" data-v-6c12f4e6="" data-v-0ead0262=""><input type="checkbox" class="option-input" data-v-6c12f4e6=""><div class="title" data-v-6c12f4e6="">Tâche n°3</div><p class="text-tasks" data-v-0ead0262=""> Créer un endpoint qui retourne les statistiques suivantes : </p><p data-v-0ead0262="">- Pays qui a le plus grand ratio de parties gagnées</p><p data-v-0ead0262="">- IMC moyen de tous les joueurs</p><p class="text-tasks" data-v-0ead0262=""> - La <a href="https://fr.wikipedia.org/wiki/Glossaire_des_statistiques#M%C3%A9diane" target="_blank" data-v-0ead0262="" style="text-decoration: underline;">médiane</a> de la taille des joueurs </p><!----></div><div class="card card-task" data-v-6c12f4e6="" data-v-0ead0262=""><input type="checkbox" class="option-input" data-v-6c12f4e6=""><div class="title" data-v-6c12f4e6="">Tâche n°4</div><p class="text-tasks" data-v-0ead0262="">Déploie ton projet sur le Cloud.</p><!----></div></div>
+
+
+
+<h2 data-v-0ead0262="">Tâches réalisées :</h2>
+* Tâche 1
+  - /players
+* Tâche 2
+  - /players/{id}
+* Tâche 3
+  - /statistics
+  
+<h2 data-v-0ead0262="">Tests :</h2>
+* Executer depuis la racine du répo (là où se trouve le fichier <b>compose.yaml</b>):
+- docker compose up
+- docker run
+
+# Get all players
+curl -X GET http://localhost:8080/players/ -H "Accept: application/json"
+
+###
+
+# Get a specific player (ID: 52)
+curl -X GET http://localhost:8080/players/52 -H "Accept: application/json"
+
+###
+
+# Get statistics
+curl -X GET http://localhost:8080/statistics -H "Accept: application/json"
+
+
+
+
+
+
+  
