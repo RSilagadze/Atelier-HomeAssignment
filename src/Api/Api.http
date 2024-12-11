@@ -1,11 +1,17 @@
-@Api_HostAddress = http://localhost:5164
+@Api_HostAddress = http://localhost:8080
 
-GET {{Api_HostAddress}}/todos/
+GET {{Api_HostAddress}}/players/
 Accept: application/json
 
 ###
 
-GET {{Api_HostAddress}}/todos/1
+GET {{Api_HostAddress}}/players/52
 Accept: application/json
 
 ###
+
+GET {{Api_HostAddress}}/statistics
+Accept: application/json
+
+###
+

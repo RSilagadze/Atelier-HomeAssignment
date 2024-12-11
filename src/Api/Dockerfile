@@ -10,7 +10,9 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER $APP_UID
 WORKDIR /app
 EXPOSE 8080
-
+EXPOSE 80
+EXPOSE 443
+HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 CMD curl -f http://localhost/health/live || exit 1
 
 # This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
@@ -19,11 +21,10 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     clang zlib1g-dev
 ARG BUILD_CONFIGURATION=Release
-WORKDIR /src
-COPY ["Api/Api.csproj", "Api/"]
-RUN dotnet restore "./Api/Api.csproj"
+#COPY ["Api.csproj", "Api/"]
 COPY . .
 WORKDIR "/src/Api"
+RUN dotnet restore "./Api.csproj"
 RUN dotnet build "./Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
@@ -44,6 +45,8 @@ USER app
 FROM ${FINAL_BASE_IMAGE:-mcr.microsoft.com/dotnet/runtime-deps:8.0} AS final
 WORKDIR /app
 EXPOSE 8080
+EXPOSE 80
+EXPOSE 443
 HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 CMD curl -f http://localhost/health/live || exit 1
 COPY --from=publish /app/publish .
 ENTRYPOINT ["./Api"]
