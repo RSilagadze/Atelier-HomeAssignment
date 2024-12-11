@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
+﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Diagnostics;
 using Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api
 {
-    public class ExceptionHandlerMiddleware(
+    internal sealed class ExceptionHandlerMiddleware(
         ILogger<ExceptionHandlerMiddleware> logger) : IExceptionHandler
     { 
         public async ValueTask<bool> TryHandleAsync(
@@ -30,6 +31,9 @@ namespace Api
                 _ => 500
             };
 
+            if (status == 500)
+                return false;
+
             httpContext.Response.StatusCode = status;
             httpContext.Response.ContentType = "application/json";
         
@@ -44,6 +48,8 @@ namespace Api
                 {
                     ["TimeStamp"] = timestamp,
                     ["Status"] = status,
+                    ["TraceId"] = Activity.Current?.Id,
+                    ["RequestId"] = httpContext.TraceIdentifier,
                 }
 
             };
