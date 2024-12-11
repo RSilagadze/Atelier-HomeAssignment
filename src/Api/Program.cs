@@ -1,3 +1,4 @@
+using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
 using Api;
@@ -57,9 +58,9 @@ var stats = app.MapGroup("/statistics");
 stats.MapGet("/", async(HttpRequest request, [FromServices] IPlayersHandler playersHandler) =>
 {
     var aggregate = await playersHandler.GetPlayersDirectoryAsync(request.HttpContext.RequestAborted);
-    var averageBMI = aggregate.CalculateAverageBodyMassIndex();
-    var medianHeight = aggregate.CalculateMedianHeightForAllPlayers();
-    var countryHighestWinningPoints = aggregate.FindCountryWithHighestWinningPoints();
+    var averageBMI = aggregate.GetAverageBodyMassIndex();
+    var medianHeight = aggregate.GetMedianHeightForAllPlayers();
+    var countryHighestWinningPoints = aggregate.GetCountryWithHighestWinningPoints();
 
     var data = new Dictionary<string, object>
     {
