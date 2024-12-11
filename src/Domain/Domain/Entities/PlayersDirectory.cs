@@ -12,13 +12,13 @@
             _players = players;
         }
 
-        public double CalculateAverageBodyMassIndex()
+        public double GetAverageBodyMassIndex()
         {
-            var avgBMI = _players.Average(x => x.CalculateBodyMassIndex());
+            var avgBMI = _players.Average(x => x.GetBodyMassIndex());
             return Math.Round(avgBMI, 2, MidpointRounding.ToEven);
         }
 
-        public Country FindCountryWithHighestWinningPoints()
+        public Country GetCountryWithHighestWinningPoints()
         {
             return _players.
                 GroupBy(x => x.Country).
@@ -32,7 +32,7 @@
                 Country;
         }
 
-        public double CalculateMedianHeightForAllPlayers()
+        public double GetMedianHeightForAllPlayers()
         {
             var orderedHeights = _players
                 .Select(p => p.Data.Height)

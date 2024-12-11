@@ -24,26 +24,26 @@ namespace UnitTests
         [Test]
         public async Task ShouldReadAll5RecordsDataFromLocalJsonFileAsync()
         {
-            //given
+            //arrange
             const int recordsCount = 5;
 
-            //when
+            //act
             var players = await _playersRepository.GetAllAsync();
 
-            //then
-            Assert.That(players.Count() == recordsCount);
+            //assert
+            Assert.That(players.Count(), Is.EqualTo(recordsCount));
         }
 
         [Test]
         public async Task ShouldReadPlayerWithId52FromLocalJsonFileAsync()
         {
-            //given
+            //arrange
             const int id = 52;
 
-            //when
+            //act
             var player = await _playersRepository.GetAsync(p => p.Id == id);
 
-            //then
+            //assert
             Assert.That(player is { Id: id });
         }
     }

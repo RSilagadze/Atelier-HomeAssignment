@@ -19,7 +19,7 @@
         public string Picture { get; } = picture;
         public PlayerData Data { get; } = data;
 
-        public double CalculateBodyMassIndex()
+        public double GetBodyMassIndex()
         {
             if (Data.Weight <= 0)
                 throw new InvalidOperationException("Weight cannot be below or zero.");

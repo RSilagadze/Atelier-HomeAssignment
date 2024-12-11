@@ -10,20 +10,44 @@ namespace UnitTests
         }
 
         [Test]
-        public void ShouldCalculateBMIForNovakDjokovic()
+        public void ShouldGetBMIForNovakDjokovic()
         {
-            //given
+            //arrange
             const double targetBMI = 22.64;
             var player = new Player(52,"Novak","Djokovic","N.DJO","M",
                 new Country("SRB","SRB"),
                 "pic",
                 new PlayerData(2, 2542, 80000, 188, 31, []));
-            //when
-            var result = player.CalculateBodyMassIndex();
+            //act
+            var result = player.GetBodyMassIndex();
 
-            //then
-            var delta = Math.Abs(targetBMI - result);
-            Assert.True(delta <= 0.1);
+            //assert
+            Assert.That(targetBMI - result, Is.LessThanOrEqualTo(0.1));
+        }
+
+        [Test]
+        public void ShouldThrowInvalidOperationExceptionWhenHeightAndWeightAreBelowOrEqual0()
+        {
+            //arrange
+            var playerNegativeHeight = new Player(52, "Novak", "Djokovic", "N.DJO", "M",
+                new Country("SRB", "SRB"),
+                "pic",
+                new PlayerData(2, 2542, 80000, -1, 31, []));
+            var playerNegativeWeight = new Player(52, "Novak", "Djokovic", "N.DJO", "M",
+                new Country("SRB", "SRB"),
+                "pic",
+                new PlayerData(2, 2542, -80000, 188, 31, []));
+
+            //act & act
+            Assert.Throws<InvalidOperationException>(() =>
+            {
+                playerNegativeHeight.GetBodyMassIndex();
+            });
+            Assert.Throws<InvalidOperationException>(() =>
+            {
+                playerNegativeWeight.GetBodyMassIndex();
+            });
+
         }
     }
 }

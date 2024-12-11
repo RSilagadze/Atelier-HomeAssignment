@@ -10,7 +10,7 @@ namespace Application.Handlers
         public async Task<IEnumerable<Player>> GetAllPlayersAsync(CancellationToken cancellationToken = default)
         {
             var players = await playersRepository.GetAllAsync(cancellationToken);
-            return players.OrderByDescending(x => x.Data.Points);
+            return players.OrderBy(x => x.Data.Rank);
         }
 
         public async Task<Player> GetPlayerByIdAsync(int id, CancellationToken cancellationToken = default)

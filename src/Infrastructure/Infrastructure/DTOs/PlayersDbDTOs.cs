@@ -12,9 +12,9 @@
         public string LastName { get; set; }
         public string ShortName { get; set; }
         public string Sex { get; set; }
-        public CountryDbDTO CountryDb { get; set; }
+        public CountryDbDTO Country { get; set; }
         public string Picture { get; set; }
-        public PlayerDbDataDTO DbData { get; set; }
+        public PlayerDbDataDTO Data { get; set; }
     }
 
     public sealed class CountryDbDTO

@@ -12,14 +12,14 @@ namespace Infrastructure.Repositories
 
         private static Player PlayerDTOToPlayerEntity(PlayerDbDTO playerDbDto)
         {
-            var country = new Country(playerDbDto.CountryDb.Picture, playerDbDto.CountryDb.Code);
+            var country = new Country(playerDbDto.Country.Picture, playerDbDto.Country.Code);
           
-            var data = new PlayerData(playerDbDto.DbData.Rank,
-                playerDbDto.DbData.Points,
-                playerDbDto.DbData.Weight,
-                playerDbDto.DbData.Height,
-                playerDbDto.DbData.Age,
-                playerDbDto.DbData.Last);
+            var data = new PlayerData(playerDbDto.Data.Rank,
+                playerDbDto.Data.Points,
+                playerDbDto.Data.Weight,
+                playerDbDto.Data.Height,
+                playerDbDto.Data.Age,
+                playerDbDto.Data.Last);
           
             return new Player(playerDbDto.Id,
                 playerDbDto.FirstName,
